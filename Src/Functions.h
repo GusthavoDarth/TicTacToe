@@ -1,24 +1,49 @@
 #include <stdio.h>
+#include <stdlib.h>
+void clearCMD(){
+    printf("\e[1;1H\e[2J");
+}
 
+void clearInputBuffer(){ 
+    int c;
+    while ((c = getchar()) != '\n' && c != EOF);
+ }
 
-void clear(){ printf("\e[1;1H\e[2j"); }
-
+void startGame()
+{
+    printf("certo");
+}
 
 int intro(){
-    clear();
     char input;
-    printf("Welcome to my TIC-TAC-TOE game \n want to start? \npress [Y] to yes or [N] to exit \n");
-    do
-    {
-        if (scanf("%c", input) != 'Y'){
-            printf("Invalid input, try again");
-        }
-        else{ starGame();}
+    printf("Welcome to my TIC-TAC-TOE game \nWant to start? \nPress [Y] to play or [N] to exit \n");
+    fflush(stdout);
 
-    } while (input != 'N');
+    while(1)
+    {
+
+        if (scanf("%c", &input) != 1)
+        {
+            clearInputBuffer();
+            printf("Invalid input, try again\npress [Y] to play or [N] to exit \n");
+        }
+        
+        clearInputBuffer();
+        
+        clearCMD();
+
+        if(input == 'Y') {
+            printf("Let the game begin!\n");
+            startGame();
+            break;
+        } else if(input == 'N'){
+            break;
+        }else{ 
+            printf("Invalid input, try again\npress [Y] to play or [N] to exit \n");
+        }
+    }
     
 
-        
     return 0;
 }
 
@@ -39,8 +64,3 @@ void drawBoard()
 
 }
 
-
-void startGame()
-{
-
-}
