@@ -6,18 +6,18 @@
 
 void main()
 {
-    char turn = 'X';
+    char turn = 'O';
     char** board = createBoard();
     intro();
+    
+    printf("Let the game begin!\n");
+    
     int mode = gameMode();
 
- 
     switch (mode)
     {
     case 1:
-        printf("Let the game begin!\n");
-        drawBoard(board);
-
+        turn = swapTurn(turn);
         while (winCon(board, turn) == 0)
         {
             inputBoard(board,turn);
@@ -26,15 +26,12 @@ void main()
         break;
     
     case 2:
-        printf("Let the game begin!\n");
-        drawBoard(board);
-
         while (winCon(board, turn) == 0)
         {
+            turn = swapTurn(turn);
             inputBoard(board, turn);
             turn = swapTurn(turn);
             randomBot(board, turn);
-            turn = swapTurn(turn);
         }
         break;
     

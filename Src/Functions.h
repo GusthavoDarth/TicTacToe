@@ -12,11 +12,12 @@ void clearInputBuffer() { int c; while ((c = getchar()) != '\n' && c != EOF); }
 void drawBoard(char** board)
 {
     clearCMD();
-    printf("  %c  |  %c  | %c \n",board[0][0],board[0][1],board[0][2]);
-    printf(" ----+-----+----  \n");
-    printf("  %c  |  %c  | %c \n",board[1][0],board[1][1],board[1][2]);
-    printf(" ----+-----+----  \n");
-    printf("  %c  |  %c  | %c \n",board[2][0],board[2][1],board[2][2]);
+    printf("    0     1    2     \n");
+    printf("0   %c  |  %c  |  %c \n",board[0][0],board[0][1],board[0][2]);
+    printf("   ----+-----+----   \n");
+    printf("1   %c  |  %c  |  %c \n",board[1][0],board[1][1],board[1][2]);
+    printf("   ----+-----+----   \n");
+    printf("2   %c  |  %c  |  %c \n",board[2][0],board[2][1],board[2][2]);
 }
 
 void winText(char** board, char turn){
@@ -94,11 +95,13 @@ char** inputBoard(char** board, char turn)
     int row, col;
     drawBoard(board);
     
+    printf("\nTurn of '%c' \n", turn);
     printf("Chose the position\n");
     printf("Fist the row: ");
     scanf("%d", &row);
     printf("Now the column: ");
     scanf("%d", &col);
+
     
     if (board[row][col] == 'O' || board[row][col] == 'X' ){
         printf("Invalid position\n");
@@ -107,7 +110,7 @@ char** inputBoard(char** board, char turn)
     } else { 
         board[row][col] = turn;
     }
-        
+            
     return board;
 }
 
